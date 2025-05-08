@@ -1,0 +1,43 @@
+plugins {
+    id 'org.jetbrains.intellij' version '1.16.1'
+    id 'java'
+}
+
+group 'com.yanchen.plugin'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.commons:commons-lang3:3.13.0'
+    // JSON 處理相關依賴
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
+    // XML 處理相關依賴
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.3'
+    
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+// 配置 IntelliJ Plugin 開發環境
+intellij {
+    version = '2023.3.1'
+    plugins = ['com.intellij.java']
+}
+
+patchPluginXml {
+    sinceBuild = '211'
+    untilBuild = '281'
+    changeNotes = """
+        <ul>
+            <li>初始版本，實現基本功能</li>
+        </ul>
+      """
+}
+
+test {
+    useJUnitPlatform()
+}
